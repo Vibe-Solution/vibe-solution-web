@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { motion, useAnimationFrame, useMotionValue, useSpring } from 'framer-motion'
+import defaultLogo from '../assets/vibe-logo.jpg'
 
 // Floating geometric shape
 function GeometricShape({ shape, size, x, y, delay, duration, color }) {
@@ -111,21 +112,13 @@ export default function Hero({ logoSrc }) {
                             }}
                             transition={{ duration: 3, repeat: Infinity }}
                         />
-                        {/* Logo image or fallback */}
-                        {logoSrc ? (
-                            <img
-                                src={logoSrc}
-                                alt="Vibe Solution Logo"
-                                className="w-32 h-32 rounded-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                style={{ filter: 'drop-shadow(0 0 20px rgba(0,245,255,0.4))' }}
-                            />
-                        ) : (
-                            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-cyan-400 via-violet-600 to-purple-800 flex items-center justify-center text-5xl font-display font-black text-white group-hover:scale-110 transition-transform duration-500 shadow-2xl"
-                                style={{ boxShadow: '0 0 40px rgba(0,245,255,0.3)' }}
-                            >
-                                V
-                            </div>
-                        )}
+                        {/* Logo image */}
+                        <img
+                            src={logoSrc || defaultLogo}
+                            alt="Vibe Solution Logo"
+                            className="w-32 h-32 rounded-3xl object-cover border-2 border-cyan-400/40 group-hover:scale-105 group-hover:border-cyan-400 transition-all duration-500 shadow-[0_0_40px_rgba(0,245,255,0.4)]"
+                            style={{ filter: 'drop-shadow(0 0 25px rgba(0,245,255,0.5))' }}
+                        />
                         {/* Rotating ring */}
                         <motion.div
                             className="absolute -inset-3 rounded-full border border-cyan-400/20"

@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import vibeLogo from '../assets/vibe-logo.jpg'
 
 export default function Footer() {
     const currentYear = new Date().getFullYear()
@@ -12,14 +14,16 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                     {/* Brand */}
                     <div className="flex flex-col items-center md:items-start gap-3">
-                        <a href="#home" className="flex items-center gap-2 group">
-                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-600 flex items-center justify-center font-display font-black text-white text-sm">
-                                V
-                            </div>
+                        <Link to="/" className="flex items-center gap-2.5 group">
+                            <img
+                                src={vibeLogo}
+                                alt="Vibe Solution"
+                                className="w-8 h-8 rounded-lg object-cover border border-cyan-400/30 group-hover:border-cyan-400 transition-colors shadow-[0_0_12px_rgba(0,245,255,0.25)]"
+                            />
                             <span className="font-display font-bold text-lg text-white">
                                 Vibe<span className="gradient-text">Solution</span>
                             </span>
-                        </a>
+                        </Link>
                         <p className="text-slate-500 text-sm max-w-xs text-center md:text-left">
                             Crafting extraordinary digital experiences powered by creativity and AI.
                         </p>
