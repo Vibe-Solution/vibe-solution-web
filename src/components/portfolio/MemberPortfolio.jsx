@@ -125,7 +125,7 @@ export default function MemberPortfolio() {
                                         : 'bg-white/[0.02] text-slate-400 border-white/5 hover:text-white hover:border-white/20'
                                 }`}
                             >
-                                {m.emoji} {m.name.split(' ')[0]}
+                                {m.emoji} {m.shortName || m.name}
                             </Link>
                         ))}
                     </div>

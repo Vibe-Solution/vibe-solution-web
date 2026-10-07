@@ -174,10 +174,10 @@ export default function Hero({ logoSrc }) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.9, duration: 0.8 }}
-                    className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                    className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
                 >
                     <motion.a
-                        href="#about"
+                        href="/about"
                         whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(0,245,255,0.4)' }}
                         whileTap={{ scale: 0.97 }}
                         className="px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-semibold text-base shadow-xl transition-all duration-300"
@@ -185,7 +185,7 @@ export default function Hero({ logoSrc }) {
                         About Us
                     </motion.a>
                     <motion.a
-                        href="#contact"
+                        href="/contact"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.97 }}
                         className="px-8 py-4 rounded-full glass border border-white/20 text-white font-semibold text-base hover:border-cyan-400/40 transition-all duration-300"
@@ -194,12 +194,12 @@ export default function Hero({ logoSrc }) {
                     </motion.a>
                 </motion.div>
 
-                {/* Scroll indicator */}
+                {/* Scroll indicator with safe spacing */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.5 }}
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500"
+                    className="flex flex-col items-center gap-2 text-slate-500 pt-2"
                 >
                     <motion.div
                         animate={{ y: [0, 8, 0] }}
@@ -208,7 +208,7 @@ export default function Hero({ logoSrc }) {
                     >
                         <div className="w-1 h-2 rounded-full bg-slate-500" />
                     </motion.div>
-                    <span className="text-xs tracking-widest font-medium">SCROLL</span>
+                    <span className="text-[10px] tracking-widest font-semibold uppercase text-slate-500">SCROLL</span>
                 </motion.div>
             </div>
         </section>

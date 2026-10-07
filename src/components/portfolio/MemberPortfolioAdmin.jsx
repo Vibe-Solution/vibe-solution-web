@@ -256,10 +256,16 @@ export default function MemberPortfolioAdmin() {
                         </span>
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2.5">
+                        <Link
+                            to="/"
+                            className="text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 transition-colors"
+                        >
+                            🏠 Main Site
+                        </Link>
                         <Link
                             to={`/portfolio/${member.slug}`}
-                            className="text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 text-slate-200 transition-colors"
+                            className="text-xs font-semibold px-3 py-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 transition-colors"
                         >
                             👁️ View Public Page
                         </Link>

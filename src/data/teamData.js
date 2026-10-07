@@ -1,6 +1,7 @@
 export const teamMembers = [
     {
         name: 'W. Nirman Achintha',
+        shortName: 'Nirman',
         slug: 'nirman-achintha',
         role: 'Founder & Lead Developer',
         emoji: '💻',
@@ -18,6 +19,7 @@ export const teamMembers = [
     },
     {
         name: 'Imal Lakshitha',
+        shortName: 'Imal',
         slug: 'imal-lakshitha',
         role: 'Network & Systems Specialist',
         emoji: '🌐',
@@ -35,6 +37,7 @@ export const teamMembers = [
     },
     {
         name: 'Tharaka Jayampathi',
+        shortName: 'Tharaka',
         slug: 'tharaka-jayampathi',
         role: 'Data Science & Python Developer',
         emoji: '📊',
@@ -52,6 +55,7 @@ export const teamMembers = [
     },
     {
         name: 'Ravindi Geeganage',
+        shortName: 'Ravindi',
         slug: 'ravindi-geeganage',
         role: 'Frontend & UI Designer',
         emoji: '✨',
@@ -69,6 +73,7 @@ export const teamMembers = [
     },
     {
         name: 'Miyuni Devanga',
+        shortName: 'Miyuni',
         slug: 'miyuni-devanga',
         role: 'AI & Compliance Specialist',
         emoji: '🧠',

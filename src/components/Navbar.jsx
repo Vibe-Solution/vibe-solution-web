@@ -4,22 +4,21 @@ import { motion, AnimatePresence } from 'framer-motion'
 import vibeLogo from '../assets/vibe-logo.jpg'
 
 const navLinks = [
-    { label: 'Home', href: '#home', path: '/' },
-    { label: 'Services', href: '#services', path: '/#services' },
-    { label: 'About Us', href: '#about', path: '/#about' },
-    { label: 'Team', href: '#team', path: '/#team' },
-    { label: 'Portfolio', href: '#portfolio', path: '/portfolio', isRoute: true },
-    { label: 'Contact', href: '#contact', path: '/#contact' },
+    { label: 'Home', path: '/' },
+    { label: 'Services', path: '/services' },
+    { label: 'About Us', path: '/about' },
+    { label: 'Team', path: '/team' },
+    { label: 'Portfolio', path: '/portfolio' },
+    { label: 'Contact', path: '/contact' },
 ]
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
     const location = useLocation()
-    const isHomePage = location.pathname === '/'
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 40)
+        const onScroll = () => setScrolled(window.scrollY > 30)
         window.addEventListener('scroll', onScroll)
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
@@ -31,12 +30,12 @@ export default function Navbar() {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
                 scrolled
-                    ? 'glass border-b border-white/10 shadow-lg shadow-black/50 bg-[#0d0d0d]/85 backdrop-blur-md'
-                    : 'bg-transparent'
+                    ? 'border-b border-white/10 shadow-lg shadow-black/50 bg-[#0d0d0d]/90 backdrop-blur-md'
+                    : 'bg-gradient-to-b from-[#0d0d0d]/80 to-transparent backdrop-blur-sm'
             }`}
         >
             <div className="max-w-7xl mx-auto px-6 py-3.5 flex items-center justify-between">
-                {/* Logo with official graphic */}
+                {/* Logo */}
                 <Link to="/" className="flex items-center gap-2.5 group">
                     <div className="relative">
                         <img
@@ -51,62 +50,52 @@ export default function Navbar() {
                     </span>
                 </Link>
 
-                {/* Desktop links */}
+                {/* Desktop links as dedicated pages */}
                 <ul className="hidden md:flex items-center gap-7">
                     {navLinks.map((link) => {
-                        if (link.isRoute && !isHomePage) {
-                            return (
-                                <li key={link.label}>
-                                    <Link
-                                        to={link.path}
-                                        className="text-sm font-medium text-slate-300 hover:text-cyan-400 relative group transition-colors duration-200"
-                                    >
-                                        {link.label}
-                                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-cyan-400 to-purple-600 group-hover:w-full transition-all duration-300" />
-                                    </Link>
-                                </li>
-                            )
-                        }
-
-                        const targetHref = isHomePage ? link.href : link.path
+                        const isActive =
+                            link.path === '/'
+                                ? location.pathname === '/'
+                                : location.pathname.startsWith(link.path)
 
                         return (
-                            <li key={link.label}>
-                                {targetHref.startsWith('/') ? (
-                                    <Link
-                                        to={targetHref}
-                                        className="text-sm font-medium text-slate-300 hover:text-cyan-400 relative group transition-colors duration-200"
-                                    >
-                                        {link.label}
-                                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-cyan-400 to-purple-600 group-hover:w-full transition-all duration-300" />
-                                    </Link>
-                                ) : (
-                                    <a
-                                        href={targetHref}
-                                        className="text-sm font-medium text-slate-300 hover:text-cyan-400 relative group transition-colors duration-200"
-                                    >
-                                        {link.label}
-                                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-cyan-400 to-purple-600 group-hover:w-full transition-all duration-300" />
-                                    </a>
-                                )}
+                            <li key={link.path}>
+                                <Link
+                                    to={link.path}
+                                    className={`text-sm font-medium transition-colors relative py-1 ${
+                                        isActive
+                                            ? 'text-cyan-400 font-semibold'
+                                            : 'text-slate-300 hover:text-white'
+                                    }`}
+                                >
+                                    {link.label}
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="navbar-active"
+                                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-full"
+                                            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                                        />
+                                    )}
+                                </Link>
                             </li>
                         )
                     })}
                 </ul>
 
-                {/* CTA */}
+                {/* CTA Button */}
                 <div className="hidden md:flex items-center gap-3">
-                    <motion.a
-                        href={isHomePage ? '#contact' : '/#contact'}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.97 }}
-                        className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-violet-600 text-white text-xs font-bold uppercase tracking-wider shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
-                    >
-                        Get Started
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </motion.a>
+                    <Link to="/contact">
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.97 }}
+                            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-violet-600 text-white text-xs font-bold uppercase tracking-wider shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 cursor-pointer"
+                        >
+                            Get Started
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </motion.button>
+                    </Link>
                 </div>
 
                 {/* Mobile menu button */}
@@ -134,37 +123,34 @@ export default function Navbar() {
                     >
                         <ul className="flex flex-col gap-0 px-6 py-4">
                             {navLinks.map((link) => {
-                                const targetHref = isHomePage ? link.href : link.path
+                                const isActive =
+                                    link.path === '/'
+                                        ? location.pathname === '/'
+                                        : location.pathname.startsWith(link.path)
                                 return (
-                                    <li key={link.label}>
-                                        {targetHref.startsWith('/') ? (
-                                            <Link
-                                                to={targetHref}
-                                                onClick={() => setMenuOpen(false)}
-                                                className="block py-3 text-slate-300 hover:text-cyan-400 border-b border-white/5 transition-colors"
-                                            >
-                                                {link.label}
-                                            </Link>
-                                        ) : (
-                                            <a
-                                                href={targetHref}
-                                                onClick={() => setMenuOpen(false)}
-                                                className="block py-3 text-slate-300 hover:text-cyan-400 border-b border-white/5 transition-colors"
-                                            >
-                                                {link.label}
-                                            </a>
-                                        )}
+                                    <li key={link.path}>
+                                        <Link
+                                            to={link.path}
+                                            onClick={() => setMenuOpen(false)}
+                                            className={`block py-3 border-b border-white/5 transition-colors text-sm ${
+                                                isActive
+                                                    ? 'text-cyan-400 font-semibold'
+                                                    : 'text-slate-300 hover:text-white'
+                                            }`}
+                                        >
+                                            {link.label}
+                                        </Link>
                                     </li>
                                 )
                             })}
                             <li className="pt-4">
-                                <a
-                                    href={isHomePage ? '#contact' : '/#contact'}
+                                <Link
+                                    to="/contact"
                                     onClick={() => setMenuOpen(false)}
                                     className="block text-center px-5 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-violet-600 text-white text-xs font-bold uppercase tracking-wider"
                                 >
                                     Get Started
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </motion.div>

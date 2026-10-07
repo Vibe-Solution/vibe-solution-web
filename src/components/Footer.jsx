@@ -2,6 +2,15 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import vibeLogo from '../assets/vibe-logo.jpg'
 
+const footerLinks = [
+    { label: 'Home', path: '/' },
+    { label: 'Services', path: '/services' },
+    { label: 'About Us', path: '/about' },
+    { label: 'Team', path: '/team' },
+    { label: 'Portfolio', path: '/portfolio' },
+    { label: 'Contact', path: '/contact' },
+]
+
 export default function Footer() {
     const currentYear = new Date().getFullYear()
 
@@ -25,21 +34,21 @@ export default function Footer() {
                             </span>
                         </Link>
                         <p className="text-slate-500 text-sm max-w-xs text-center md:text-left">
-                            Crafting extraordinary digital experiences powered by creativity and AI.
+                            Crafting extraordinary digital experiences powered by modern web technologies & AI solutions.
                         </p>
                     </div>
 
-                    {/* Nav links */}
+                    {/* Nav links as actual pages */}
                     <nav>
                         <ul className="flex flex-wrap justify-center gap-6">
-                            {['Home', 'Services', 'Team', 'Portfolio', 'Contact'].map((item) => (
-                                <li key={item}>
-                                    <a
-                                        href={`#${item.toLowerCase()}`}
+                            {footerLinks.map((item) => (
+                                <li key={item.label}>
+                                    <Link
+                                        to={item.path}
                                         className="text-slate-500 hover:text-cyan-400 text-sm transition-colors duration-200"
                                     >
-                                        {item}
-                                    </a>
+                                        {item.label}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -75,9 +84,11 @@ export default function Footer() {
                             </svg>
                         </motion.a>
 
-                        {/* Instagram placeholder */}
+                        {/* Instagram */}
                         <motion.a
-                            href="#"
+                            href="https://instagram.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             whileHover={{ scale: 1.15, y: -2 }}
                             className="w-9 h-9 rounded-full glass border border-white/10 flex items-center justify-center text-slate-400 hover:text-purple-400 hover:border-purple-400/30 transition-colors duration-300"
                             aria-label="Instagram"
@@ -93,19 +104,12 @@ export default function Footer() {
 
                 {/* Bottom bar */}
                 <div className="mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p className="text-slate-600 text-xs">
+                    <p className="text-slate-500 text-xs">
                         © {currentYear} Vibe Solution. All rights reserved.
                     </p>
-                    <p className="text-slate-600 text-xs flex items-center gap-1">
-                        Made with
-                        <motion.span
-                            animate={{ scale: [1, 1.3, 1] }}
-                            transition={{ duration: 1, repeat: Infinity }}
-                            className="text-red-500"
-                        >
-                            ♥
-                        </motion.span>
-                        & AI
+                    <p className="text-slate-400 text-xs flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                        <span className="font-semibold text-slate-300">Vibe Solution</span> &bull; Empowering Digital Excellence
                     </p>
                 </div>
             </div>

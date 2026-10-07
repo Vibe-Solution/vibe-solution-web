@@ -291,7 +291,7 @@ export default function HomePortfolio() {
                             type="text"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            placeholder={`Search ${selectedMember.name.split(' ')[0]}'s projects...`}
+                            placeholder={`Search ${selectedMember.shortName || selectedMember.name}'s projects...`}
                             className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-white/20 transition-colors"
                         />
                     </div>
@@ -331,7 +331,7 @@ export default function HomePortfolio() {
                             }}
                         />
                         <p className="text-slate-400 text-sm">
-                            Fetching {selectedMember.name.split(' ')[0]}'s repositories...
+                            Fetching {selectedMember.shortName || selectedMember.name}'s repositories...
                         </p>
                     </div>
                 )}
